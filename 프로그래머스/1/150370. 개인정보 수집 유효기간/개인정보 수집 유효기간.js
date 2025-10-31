@@ -1,19 +1,18 @@
 function solution(today, terms, privacies) {
     const MONTHS_PER_YEAR = 12;
-    const DAYS_PER_YEAR = 28;
+    const DAYS_PER_MONTH = 28;
     
-    const getTime = date => date.split(".").reduce((arr, cur, ind) => {
-        if (ind === 0) { return arr + (Number(cur) - 2000) * MONTHS_PER_YEAR * DAYS_PER_YEAR }
-        else if (ind === 1) { return arr + Number(cur) * DAYS_PER_YEAR }
-        else { return arr + Number(cur) }
-    }, 0);
+    const getTime = date => {
+        const [year, month, day] = date.split(".").map(Number);
+        return (year - 2000) * MONTHS_PER_YEAR * DAYS_PER_MONTH + month * DAYS_PER_MONTH + day
+    };
     
     const NOW_TIME = getTime(today);
     const termMap = new Map;
     
     terms.forEach(term => {
         const [type, duration] = term.split(" ");
-        termMap.set(type, NOW_TIME - duration * DAYS_PER_YEAR);
+        termMap.set(type, NOW_TIME - duration * DAYS_PER_MONTH);
     });
     
     let result = [];
