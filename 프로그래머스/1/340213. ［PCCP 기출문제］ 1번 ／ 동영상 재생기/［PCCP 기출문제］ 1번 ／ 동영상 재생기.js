@@ -11,7 +11,7 @@ function encoder(time) {
 
 function solution(video_len, pos, op_start, op_end, commands) {
     [video_len, pos, op_start, op_end] =
-        [video_len, pos, op_start, op_end].map(el => decoder(el));
+        [video_len, pos, op_start, op_end].map(decoder);
     
     commands.forEach(cmd => {
         if (pos >= op_start && pos <= op_end) { pos = op_end };
