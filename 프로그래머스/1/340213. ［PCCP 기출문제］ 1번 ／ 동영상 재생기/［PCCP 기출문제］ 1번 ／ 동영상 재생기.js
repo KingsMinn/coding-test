@@ -3,7 +3,7 @@ function decoder(time) {
     return min * 60 + sec;
 }
 
-function incoder(time) {
+function encoder(time) {
     const convertedMin = String(Math.floor(time/60)).padStart(2, "0");
     const convertedSec = String(time%60).padStart(2, "0");
     return convertedMin + ":" + convertedSec
@@ -19,5 +19,5 @@ function solution(video_len, pos, op_start, op_end, commands) {
         if (cmd === "next") { pos = Math.min(pos + 10, video_len) };
     });
     if (pos >= op_start && pos <= op_end) { pos = op_end };
-    return incoder(pos)
+    return encoder(pos)
 }
